@@ -1,0 +1,8 @@
+Alma-y-Lino.github.io/
+├── index.html
+├── data/
+│   └── products.json
+└── images/
+    ├── almohadon-45x45.jpg
+    ├── toalla-2p.jpg
+    └── manta-1-5.jpg
