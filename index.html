@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alma y lino - Catálogo</title>
+  <style>
+    :root{--brand:#7a5a3c;--accent:#c89b6a;--muted:#666}
+    body{font-family:system-ui,Segoe UI,Roboto,Arial,Helvetica;max-width:1100px;margin:18px auto;padding:12px;color:#111;background:#fff}
+    header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+    h1{margin:0;font-size:20px;color:var(--brand)}
+    .brand-sub{color:var(--muted);font-size:13px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+    .card{border:1px solid #eee;border-radius:8px;padding:12px;background:#fff}
+    .thumb{width:100%;height:160px;object-fit:cover;border-radius:6px}
+    .title{font-weight:600;margin:8px 0 4px}
+    .price{color:var(--brand);font-weight:700}
+    .desc{color:var(--muted);font-size:13px;margin-top:8px}
+    .actions{display:flex;gap:8px;margin-top:10px}
+    .btn{flex:1;padding:8px;border-radius:6px;text-align:center;text-decoration:none;color:#fff;background:var(--brand);font-weight:600}
+    .btn.secondary{background:#444}
+    #adspace{margin:18px 0;padding:12px;border-radius:8px;background:#faf7f3;text-align:center;color:#666}
+    footer{margin-top:18px;color:#666;font-size:13px;text-align:center}
+    @media (max-width:520px){.thumb{height:140px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div style="width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--accent));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700">AyL</div>
+    <div>
+      <h1>Alma y lino</h1>
+      <div class="brand-sub">Textiles artesanales · Calidad y diseño</div>
+    </div>
+  </header>
+
+  <div id="adspace">
+    <!-- ADSPACE: aquí irá publicidad o sponsor -->
+    Espacio de patrocinio / publicitario
+  </div>
+
+  <main id="main">
+    <section id="list" class="grid"></section>
+  </main>
+
+  <footer>
+    Catálogo en línea · Alma y lino · Actualizá data/products.json para cambiar el catálogo
+  </footer>
+
+  <script>
+    // REEMPLAZAR este valor con tu número de WhatsApp en formato internacional (sin +)
+    // Ejemplo Argentina: 5492264123456
+    const WHATSAPP_NUMBER = "549226XXXXXXX";
+    const mainList = document.getElementById('list');
+
+    async function fetchProducts(){
+      try{
+        const r = await fetch('data/products.json');
+        if(!r.ok) throw new Error('No data');
+        return await r.json();
+      }catch(e){
+        mainList.innerHTML = '<p>Error cargando productos. Subí data/products.json y probá de nuevo.</p>';
+        return [];
+      }
+    }
+
+    function createWhatsAppLink(product){
+      const text = encodeURIComponent(
+        `Hola, quiero pedir:%0A- Producto: ${product.title}%0A- SKU: ${product.id}%0A- Precio: ${product.price}%0A- Cantidad: `
+      );
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+    }
+
+    function render(products){
+      if(!products.length){
+        mainList.innerHTML = '<p>No hay productos publicados.</p>';
+        return;
+      }
+      mainList.innerHTML = '';
+      products.forEach(p => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        const img = p.images && p.images.length ? `<img class="thumb" src="${p.images[0]}" alt="${p.title}">` : `<div style="height:160px;background:#f7f4f1;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#999">Sin imagen</div>`;
+        card.innerHTML = `
+          ${img}
+          <div class="title">${p.title}</div>
+          <div class="price">$ ${p.price}</div>
+          <div class="desc">${p.short || ''}</div>
+          <div class="actions">
+            <a class="btn" href="${createWhatsAppLink(p)}" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+            <a class="btn secondary" href="?id=${encodeURIComponent(p.id)}">Ver</a>
+          </div>
+        `;
+        mainList.appendChild(card);
+      });
+    }
+
+    function renderDetail(product){
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+      const element = document.createElement('div');
+      element.innerHTML = `
+        <a href="/" style="display:inline-block;margin-bottom:12px;color:var(--brand);text-decoration:none;">← Volver</a>
+        <article class="card" style="padding:18px">
+          ${product.images && product.images.length ? `<img class="thumb" src="${product.images[0]}" alt="${product.title}">` : ''}
+          <h2 class="title" style="margin-top:12px">${product.title}</h2>
+          <div class="price">$ ${product.price}</div>
+          <div style="color:var(--muted);margin-top:8px">SKU: ${product.id} ${product.stock ? '• Stock: ' + product.stock : ''}</div>
+          <p style="margin-top:12px">${product.description || ''}</p>
+          <div class="actions" style="margin-top:14px">
+            <a class="btn" href="${createWhatsAppLink(product)}" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+            <a class="btn secondary" href="/">Volver al catálogo</a>
+          </div>
+        </article>
+      `;
+      const main = document.getElementById('main');
+      main.innerHTML = '';
+      main.appendChild(element);
+    }
+
+    (async function(){
+      const products = await fetchProducts();
+      const params = new URLSearchParams(location.search);
+      const id = params.get('id');
+      if(id){
+        const found = products.find(p => p.id === id);
+        if(found) return renderDetail(found);
+        else location.href = '/';
+      } else {
+        render(products);
+      }
+    })();
+  </script>
+</body>
+</html>
