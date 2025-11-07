@@ -1,0 +1,29 @@
+[
+  {
+    "id": "almohadon-45x45",
+    "title": "Almohadón Alma y lino 45x45",
+    "price": "3500",
+    "short": "Funda algodón; relleno hipoalergénico",
+    "description": "Almohadón artesanal con cierre invisible. Funda desmontable y lavable. Costuras reforzadas.",
+    "stock": "20",
+    "images": ["images/almohadon-45x45.jpg"]
+  },
+  {
+    "id": "toalla-2p",
+    "title": "Juego de Toallas Alma y lino 2 piezas",
+    "price": "4200",
+    "short": "Rizo 100% algodón; alta absorción",
+    "description": "Juego compuesto por toalla de mano y toalla de baño. Tejido suave, secado rápido y diseño atemporal.",
+    "stock": "15",
+    "images": ["images/toalla-2p.jpg"]
+  },
+  {
+    "id": "manta-1-5",
+    "title": "Manta liviana 1.5 plaza",
+    "price": "6800",
+    "short": "Microfibra suave; ideal para otoño",
+    "description": "Manta ligera de alta durabilidad, fácil de lavar y secar. Ideal para el día a día y para obsequiar.",
+    "stock": "10",
+    "images": ["images/manta-1-5.jpg"]
+  }
+]
