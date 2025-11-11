@@ -1,3 +1,47 @@
 [
-  {"id":1,"title":"Producto A","price":1000}
+  {
+    "id": "sabanas-estampadas-1p5",
+    "title": "Juego de sábanas estampadas económicas 1 1/2 plaza",
+    "price": "10000",
+    "short": "3 piezas; colores surtidos según disponibilidad",
+    "description": "- COLORES SURTIDOS EN BASE A DISPONIBILIDAD -\n\n1 PLAZA Y 1/2 INCLUYE 3 PIEZAS:\n- Sábana plana (1,90 m x 0,90 m)\n- Sábana ajustable (1,90 m x 0,90 m)\n- Funda de almohada (80 cm x 45 cm)\nAlto de colchón: 25 cm",
+    "stock": "20",
+    "images": ["images/sabanas-estampada-1p5.jpg"]
+  },
+  {
+    "id": "sabanas-estampadas-2p5",
+    "title": "Juego de sábanas estampadas económicas 2 1/2 plaza",
+    "price": "12300",
+    "short": "4 piezas; colores surtidos según disponibilidad",
+    "description": "2 PLAZAS Y 1/2 INCLUYE 4 PIEZAS:\n- Sábana plana (1,90 m x 1,40 m)\n- Sábana ajustable (1,90 m x 1,40 m)\n- 2 fundas de almohada (80 cm x 45 cm)\nAlto de colchón: 25 cm",
+    "stock": "15",
+    "images": ["images/sabanas-estampada-2p5.jpg"]
+  },
+  {
+    "id": "sabanas-lisas-1p5",
+    "title": "Juego de sábanas lisa económica 1 1/2 plaza",
+    "price": "10100",
+    "short": "3 piezas; diseño liso",
+    "description": "1 PLAZA Y 1/2 INCLUYE 3 PIEZAS:\n- Sábana plana (1,90 m x 0,90 m)\n- Sábana ajustable (1,90 m x 0,90 m)\n- Funda de almohada (80 cm x 45 cm)\nAlto de colchón: 25 cm",
+    "stock": "20",
+    "images": ["images/sabanas-lisa-1p5.jpg"]
+  },
+  {
+    "id": "sabanas-lisas-2p5",
+    "title": "Juego de sábanas lisa económica 2 1/2 plaza",
+    "price": "12500",
+    "short": "4 piezas; diseño liso",
+    "description": "2 PLAZAS Y 1/2 INCLUYE 4 PIEZAS:\n- Sábana plana (1,90 m x 1,40 m)\n- Sábana ajustable (1,90 m x 1,40 m)\n- 2 fundas de almohada (80 cm x 45 cm)\nAlto de colchón: 25 cm",
+    "stock": "12",
+    "images": ["images/sabanas-lisa-2p5.jpg"]
+  },
+  {
+    "id": "cortina-bano-pvc-economica",
+    "title": "Cortina de baño pvc económica",
+    "price": "4000",
+    "short": "Incluye cortina, protector y ganchos; colores surtidos",
+    "description": "- COLOR O ESTAMPA SURTIDO EN BASE A DISPONIBILIDAD -\nIncluye: Cortina, protector y ganchos\nMedida aprox: 1,7 m x 1,8 m\nMaterial: 100% plástico",
+    "stock": "30",
+    "images": ["images/cortina-bano-pvc.jpg"]
+  }
 ]
